@@ -1,0 +1,9 @@
+CREATE TABLE `persons` (
+	`Id` INT NOT NULL AUTO_INCREMENT,
+	`firstName` VARCHAR(50) NULL DEFAULT '0',
+	`LastName` VARCHAR(50) NULL DEFAULT '0',
+	`Address` VARCHAR(50) NULL DEFAULT '0',
+	`Gender` VARCHAR(50) NULL DEFAULT '0'
+)
+COLLATE='utf8mb4_0900_ai_ci'
+;
