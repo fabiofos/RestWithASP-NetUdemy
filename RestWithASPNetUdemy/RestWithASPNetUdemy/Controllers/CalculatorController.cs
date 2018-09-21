@@ -9,9 +9,9 @@ namespace RestWithASPNetUdemy.Controllers
     [Route("api/[controller]")]
     public class CalculatorController : Controller
     {
-        // GET api/values/5
-        [HttpGet("{firstNumber}/{secondNumber}")]
-        public IActionResult Soma(string firstNumber, string secondNumber)
+        // GET api/values/sum/5/2
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
+        public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
@@ -21,8 +21,59 @@ namespace RestWithASPNetUdemy.Controllers
             return BadRequest("Invalid Format Input");
         }
 
+        // GET api/values/subtraction/5/4
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Format Input");
+        }
+
+
+        // GET api/values/division/5/4
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Format Input");
+        }
+
+
+        // GET api/values/subtraction/5/4
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Format Input");
+        }
+
+        // GET api/values/subtraction/5/4
+        [HttpGet("square-root/{firstNumber}")]
+        public IActionResult SquareRoot(string firstNumber)
+        {
+            if (IsNumeric(firstNumber))
+            {
+                var square = Math.Sqrt((double)ConvertToDecimal(firstNumber));
+                return Ok(square.ToString());
+            }
+            return BadRequest("Invalid Format Input");
+        }
+
         private decimal ConvertToDecimal(string number)
         {
+
             decimal decimalValue;
             if (Decimal.TryParse(number, out decimalValue))
             {
